@@ -13,10 +13,15 @@ TERMINATIONS = {
     'videos': ('.mp4', '.avi', '.mov'),
 }
 
-load_dotenv()
+env_path = Path(__file__).parent / '.env'
 
-desktop = Path(dotenv.get_key('.env', 'SOURCE_DIR')).expanduser()
-cleanup_path = Path(dotenv.get_key('.env', 'CLEANUP_DIR')).expanduser()
+if env_path.exists():
+    load_dotenv(dotenv_path=env_path)
+else: raise FileNotFoundError(f'Environment file {env_path} not found')
+
+
+desktop = Path(dotenv.get_key(env_path, 'SOURCE_DIR')).expanduser()
+cleanup_path = Path(dotenv.get_key(env_path, 'CLEANUP_DIR')).expanduser()
 
 ### Creates Paths for target directories
 cleanup_directories = [cleanup_path / termination for termination in TERMINATIONS.keys()]
@@ -32,7 +37,7 @@ for item in desktop.iterdir():
     if item.is_file():
         for key in TERMINATIONS.keys():
             for termination in TERMINATIONS.get(key):
-                if item.suffix == termination:
+                if item.suffix.lower() == termination.lower():
                     shutil.move(str(item), str(cleanup_path / key / item.name))
                     moved = True
                     logs.append(
@@ -43,7 +48,7 @@ for item in desktop.iterdir():
             if moved:
                 break
 
-
-with open('logs.log', 'a') as f:
+path_to_logs = Path(__file__).parent / 'logs.log'
+with open(path_to_logs, 'a') as f:
     for log in logs:
         f.write(log + '\n')
