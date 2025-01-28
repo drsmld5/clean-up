@@ -8,7 +8,7 @@ import shutil
 
 
 TERMINATIONS = {
-    'images': ('.jpg', '.jpeg', '.png', '.gif'),
+    'images': ('.jpg', '.jpeg', '.png', '.gif', '.webp'),
     'docs': ('.pdf', '.docx'),
     'videos': ('.mp4', '.avi', '.mov'),
 }
