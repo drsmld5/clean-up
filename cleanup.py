@@ -9,8 +9,9 @@ import shutil
 
 TERMINATIONS = {
     'images': ('.jpg', '.jpeg', '.png', '.gif', '.webp'),
-    'docs': ('.pdf', '.docx'),
+    'docs': ('.pdf', '.docx', '.pptx', '.xlsx', '.csv', '.txt'),
     'videos': ('.mp4', '.avi', '.mov'),
+    'misc': ('.zip', '.dmg'),
 }
 
 env_path = Path(__file__).parent / '.env'
