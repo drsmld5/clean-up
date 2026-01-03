@@ -9,6 +9,7 @@ import shutil
 
 TERMINATIONS = {
     'images': ('.jpg', '.jpeg', '.png', '.gif', '.webp'),
+    'vector': ('.svg', '.eps'),
     'docs': ('.pdf', '.docx', '.pptx', '.xlsx', '.csv', '.txt'),
     'videos': ('.mp4', '.avi', '.mov'),
     'misc': ('.zip', '.dmg'),
